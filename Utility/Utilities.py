@@ -2,6 +2,7 @@
 from azure.iot.hub import IoTHubRegistryManager
 from azure.iot.hub.models import ExportImportDevice, AuthenticationMechanism, SymmetricKey
 
+DEVICE_CONNECTION_STRING = "HostName={0};DeviceId={1};SharedAccessKey={2}"
 
 def printDeviceInfo(dataToPrint,device):
     print(dataToPrint + ":")

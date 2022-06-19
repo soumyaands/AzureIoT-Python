@@ -36,6 +36,7 @@ def getDevice(numberOfDevices):
             for device in deviceList:
                 Utilities.printDeviceInfo("{0}th device".format(devicePos),device)
                 devicePos+=1
+            return deviceList;
         else:
             print("No Devices Found")
     except Exception as e:

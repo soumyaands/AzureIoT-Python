@@ -3,3 +3,7 @@ import DeviceCreation as DC
 DC.getDevice(10)
 # for i in range(0, 10):
 #     DC.deleteDevice("device_Test_"+str(i))
+
+
+import SendData as SD
+SD.sendDataToDevice(10,10)
