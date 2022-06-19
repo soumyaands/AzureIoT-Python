@@ -5,6 +5,7 @@ import threading
 import time
 import random
 from azure.iot.device import IoTHubDeviceClient
+from datetime import datetime
 iothub_connection_string = "HostName=Safiya-IoT-Hub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=dWEhcgJxlIQoav2EjWOKSWJNpt403bCzMfsVAfTNey0=";
 def sendDataToDevice(numberOfDevices,numberOfRequests):
     HostName = "Safiya-IoT-Hub.azure-devices.net"
@@ -18,13 +19,33 @@ def sendDataToDevice(numberOfDevices,numberOfRequests):
             devicePrimaryKey = device.authentication.symmetric_key.primary_key
             deviceConnectionString = DCS.format(HostName,deviceId,devicePrimaryKey)
             print(deviceConnectionString)
-            messageToSend = "{'time':'"+str(time.localtime())+"','data':'"+str(random.randint(1,10))+"'}"
-            print(messageToSend)
-            iothubdeviceclient = IoTHubDeviceClient.create_from_connection_string(deviceConnectionString)
-            #iothubdeviceclient.send_message(messageToSend)
-            threading.Thread(target=iothubdeviceclient.send_message,args=(messageToSend))
-            # ihrm.send_c2d_message(deviceId,messageToSend)
-            # threading.Thread(target = ihrm.send_c2d_message, args=(deviceId,messageToSend))
-            # # IHRM.sendMessage(messageToSend)
+            for i in range(0,numberOfRequests):
+                date_format = "%Y-%m-%dT%H:%M:%S.%fZ" 
+                dateTimeNow = datetime.now().strftime(date_format)
+                messageToSend = "{'time':'"+str(dateTimeNow)+"','data':'"+str(random.randint(1,10))+"'}"
+                print(messageToSend)
+                iothubdeviceclient = IoTHubDeviceClient.create_from_connection_string(deviceConnectionString)
+                #iothubdeviceclient.send_message(messageToSend)
+                threading.Thread(target=iothubdeviceclient.send_message,args=(messageToSend))
+                # ihrm.send_c2d_message(deviceId,messageToSend)
+                # threading.Thread(target = ihrm.send_c2d_message, args=(deviceId,messageToSend))
+                # # IHRM.sendMessage(messageToSend)
     # except Exception as e:
     #     print(e)
+
+def split_processing(numberOfDevices,numberOfRequests, num_splits=4):                                      
+    split_size = 2#len(items) // num_splits                                       
+    threads = []                                                                
+    for i in range(num_splits):                                                 
+        # determine the indices of the list this thread will handle             
+        start = i * split_size                                                  
+        # special case on the last chunk to account for uneven splits           
+        end = None if i+1 == num_splits else (i+1) * split_size                 
+        # create the thread                                                     
+        threads.append(                                                         
+            threading.Thread(target=sendDataToDevice, args=(numberOfDevices,numberOfRequests)))         
+        threads[-1].start() # start the thread we just created                  
+
+    # wait for all threads to finish                                            
+    for t in threads:                                                           
+        t.join()        

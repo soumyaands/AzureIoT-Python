@@ -16,6 +16,14 @@
         "documentation": {}
     },
     {
+        "label": "IoTHubRegistryManager",
+        "importPath": "azure.iot.hub",
+        "description": "azure.iot.hub",
+        "isExtraImport": true,
+        "detail": "azure.iot.hub",
+        "documentation": {}
+    },
+    {
         "label": "ExportImportDevice",
         "importPath": "azure.iot.hub.models",
         "description": "azure.iot.hub.models",
@@ -61,6 +69,49 @@
         "description": "azure.iot.hub.models",
         "isExtraImport": true,
         "detail": "azure.iot.hub.models",
+        "documentation": {}
+    },
+    {
+        "label": "group",
+        "importPath": "tokenize",
+        "description": "tokenize",
+        "isExtraImport": true,
+        "detail": "tokenize",
+        "documentation": {}
+    },
+    {
+        "label": "DeviceCreation",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "DeviceCreation",
+        "description": "DeviceCreation",
+        "detail": "DeviceCreation",
+        "documentation": {}
+    },
+    {
+        "label": "getDevice",
+        "importPath": "DeviceCreation",
+        "description": "DeviceCreation",
+        "isExtraImport": true,
+        "detail": "DeviceCreation",
+        "documentation": {}
+    },
+    {
+        "label": "concurrent",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "concurrent",
+        "description": "concurrent",
+        "detail": "concurrent",
+        "documentation": {}
+    },
+    {
+        "label": "SendData",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "SendData",
+        "description": "SendData",
+        "detail": "SendData",
         "documentation": {}
     },
     {
@@ -82,6 +133,74 @@
         "documentation": {}
     },
     {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "Utilities",
+        "importPath": "Utility",
+        "description": "Utility",
+        "isExtraImport": true,
+        "detail": "Utility",
+        "documentation": {}
+    },
+    {
+        "label": "DEVICE_CONNECTION_STRING",
+        "importPath": "Utility.Utilities",
+        "description": "Utility.Utilities",
+        "isExtraImport": true,
+        "detail": "Utility.Utilities",
+        "documentation": {}
+    },
+    {
+        "label": "threading",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "threading",
+        "description": "threading",
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "IoTHubDeviceClient",
+        "importPath": "azure.iot.device",
+        "description": "azure.iot.device",
+        "isExtraImport": true,
+        "detail": "azure.iot.device",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
         "label": "printDeviceInfo",
         "kind": 2,
         "importPath": "Utility.Utilities",
@@ -91,11 +210,20 @@
         "documentation": {}
     },
     {
+        "label": "DEVICE_CONNECTION_STRING",
+        "kind": 5,
+        "importPath": "Utility.Utilities",
+        "description": "Utility.Utilities",
+        "peekOfCode": "DEVICE_CONNECTION_STRING = \"HostName={0};DeviceId={1};SharedAccessKey={2}\"\ndef printDeviceInfo(dataToPrint,device):\n    print(dataToPrint + \":\")\n    print(\"device_id                      = {0}\".format(device.device_id))\n    print(\"authentication.type            = {0}\".format(device.authentication.type))\n    print(\"authentication.symmetric_key   = {0}\".format(device.authentication.symmetric_key))\n    print(\"authentication.x509_thumbprint = {0}\".format(device.authentication.x509_thumbprint))\n    print(\"connection_state               = {0}\".format(device.connection_state))\n    print(\"connection_state_updated_tTime = {0}\".format(device.connection_state_updated_time))\n    print(\"cloud_to_device_message_count  = {0}\".format(device.cloud_to_device_message_count))",
+        "detail": "Utility.Utilities",
+        "documentation": {}
+    },
+    {
         "label": "addDevice",
         "kind": 2,
         "importPath": "DeviceCreation",
         "description": "DeviceCreation",
-        "peekOfCode": "def addDevice(deviceFamily,numberOfDevices):\n    deviceList = []\n    try:\n        for i in range(0,numberOfDevices):\n            primaryKey = base64.b64encode(str(uuid.uuid4()).encode()).decode()\n            secondaryKey = base64.b64encode(str(uuid.uuid4()).encode()).decode()\n            symmetricKey = SymmetricKey(primary_key=primaryKey,secondary_key=secondaryKey)\n            authentication = AuthenticationMechanism(type=\"sas\",symmetric_key=symmetricKey)\n            device = ExportImportDevice(id=\"device\"+i,status=\"enabled\",authentication=authentication)\n            #DEVICE_CREATION",
+        "peekOfCode": "def addDevice(deviceFamily,numberOfDevices):\n    deviceList = []\n    iothub_registry_manager = IoTHubRegistryManager.from_connection_string(iothub_connection_string)\n    try:\n        for i in range(0,numberOfDevices):\n            primaryKey = base64.b64encode(str(uuid.uuid4()).encode()).decode()\n            secondaryKey = base64.b64encode(str(uuid.uuid4()).encode()).decode()\n            symmetricKey = SymmetricKey(primary_key=primaryKey,secondary_key=secondaryKey)\n            authentication = AuthenticationMechanism(type=\"sas\",symmetric_key=symmetricKey)\n            device = ExportImportDevice(id=\"device_\"+deviceFamily+\"_\"+str(i),status=\"enabled\",authentication=authentication)",
         "detail": "DeviceCreation",
         "documentation": {}
     },
@@ -104,16 +232,7 @@
         "kind": 2,
         "importPath": "DeviceCreation",
         "description": "DeviceCreation",
-        "peekOfCode": "def getDevice(numberOfDevices):\n    try:\n        deviceList = iothub_registry_manager.get_devices(numberOfDevices)\n        if deviceList:\n            devicePos = 0\n            for device in deviceList:\n                printDeviceInfo(\"{0}th device\".format(devicePos),device)\n                devicePos+=1\n        else:\n            print(\"No Devices Found\")",
-        "detail": "DeviceCreation",
-        "documentation": {}
-    },
-    {
-        "label": "deleteDevice",
-        "kind": 2,
-        "importPath": "DeviceCreation",
-        "description": "DeviceCreation",
-        "peekOfCode": "def deleteDevice(deviceName):\n    try:\n        device = ExportImportDevice(id=deviceName,status=\"enabled\",authentication=authentication)\n        device.import_mode = \"delete\"\n        iothub_registry_manager.bulk_create_or_update_devices(device)\n    except Exception as e:\n        print(\"Some Exception Description : {0}\".format(e))",
+        "peekOfCode": "def getDevice(numberOfDevices):\n    iothub_registry_manager = IoTHubRegistryManager.from_connection_string(iothub_connection_string)\n    try:\n        deviceList = iothub_registry_manager.get_devices(numberOfDevices)\n        if deviceList:\n            devicePos = 0\n            for device in deviceList:\n                Utilities.printDeviceInfo(\"{0}th device\".format(devicePos),device)\n                devicePos+=1\n            return deviceList;",
         "detail": "DeviceCreation",
         "documentation": {}
     },
@@ -122,17 +241,35 @@
         "kind": 5,
         "importPath": "DeviceCreation",
         "description": "DeviceCreation",
-        "peekOfCode": "iothub_connection_string = os.getenv(\"IOTHUB_CONNECTION_STRING\")\niothub_registry_manager = IoTHubRegistryManager.from_connection_string(iothub_connection_string)\ndef addDevice(deviceFamily,numberOfDevices):\n    deviceList = []\n    try:\n        for i in range(0,numberOfDevices):\n            primaryKey = base64.b64encode(str(uuid.uuid4()).encode()).decode()\n            secondaryKey = base64.b64encode(str(uuid.uuid4()).encode()).decode()\n            symmetricKey = SymmetricKey(primary_key=primaryKey,secondary_key=secondaryKey)\n            authentication = AuthenticationMechanism(type=\"sas\",symmetric_key=symmetricKey)",
+        "peekOfCode": "iothub_connection_string = \"HostName=Safiya-IoT-Hub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=dWEhcgJxlIQoav2EjWOKSWJNpt403bCzMfsVAfTNey0=\";\n#os.getenv(\"IOTHUB_CONNECTION_STRING\")\nglobal iothub_registry_manager #= IoTHubRegistryManager.from_connection_string(iothub_connection_string)\ndef addDevice(deviceFamily,numberOfDevices):\n    deviceList = []\n    iothub_registry_manager = IoTHubRegistryManager.from_connection_string(iothub_connection_string)\n    try:\n        for i in range(0,numberOfDevices):\n            primaryKey = base64.b64encode(str(uuid.uuid4()).encode()).decode()\n            secondaryKey = base64.b64encode(str(uuid.uuid4()).encode()).decode()",
         "detail": "DeviceCreation",
         "documentation": {}
     },
     {
-        "label": "iothub_registry_manager",
+        "label": "sendDataToDevice",
+        "kind": 2,
+        "importPath": "SendData",
+        "description": "SendData",
+        "peekOfCode": "def sendDataToDevice(numberOfDevices,numberOfRequests):\n    HostName = \"Safiya-IoT-Hub.azure-devices.net\"\n    ihrm = IHRM.from_connection_string(iothub_connection_string)\n    #try:\n    deviceList = getDevice(numberOfDevices)\n    if deviceList:\n        devicePos = 0\n        for device in deviceList:\n            deviceId = device.device_id\n            devicePrimaryKey = device.authentication.symmetric_key.primary_key",
+        "detail": "SendData",
+        "documentation": {}
+    },
+    {
+        "label": "split_processing",
+        "kind": 2,
+        "importPath": "SendData",
+        "description": "SendData",
+        "peekOfCode": "def split_processing(numberOfDevices,numberOfRequests, num_splits=4):                                      \n    split_size = 2#len(items) // num_splits                                       \n    threads = []                                                                \n    for i in range(num_splits):                                                 \n        # determine the indices of the list this thread will handle             \n        start = i * split_size                                                  \n        # special case on the last chunk to account for uneven splits           \n        end = None if i+1 == num_splits else (i+1) * split_size                 \n        # create the thread                                                     \n        threads.append(                                                         ",
+        "detail": "SendData",
+        "documentation": {}
+    },
+    {
+        "label": "iothub_connection_string",
         "kind": 5,
-        "importPath": "DeviceCreation",
-        "description": "DeviceCreation",
-        "peekOfCode": "iothub_registry_manager = IoTHubRegistryManager.from_connection_string(iothub_connection_string)\ndef addDevice(deviceFamily,numberOfDevices):\n    deviceList = []\n    try:\n        for i in range(0,numberOfDevices):\n            primaryKey = base64.b64encode(str(uuid.uuid4()).encode()).decode()\n            secondaryKey = base64.b64encode(str(uuid.uuid4()).encode()).decode()\n            symmetricKey = SymmetricKey(primary_key=primaryKey,secondary_key=secondaryKey)\n            authentication = AuthenticationMechanism(type=\"sas\",symmetric_key=symmetricKey)\n            device = ExportImportDevice(id=\"device\"+i,status=\"enabled\",authentication=authentication)",
-        "detail": "DeviceCreation",
+        "importPath": "SendData",
+        "description": "SendData",
+        "peekOfCode": "iothub_connection_string = \"HostName=Safiya-IoT-Hub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=dWEhcgJxlIQoav2EjWOKSWJNpt403bCzMfsVAfTNey0=\";\ndef sendDataToDevice(numberOfDevices,numberOfRequests):\n    HostName = \"Safiya-IoT-Hub.azure-devices.net\"\n    ihrm = IHRM.from_connection_string(iothub_connection_string)\n    #try:\n    deviceList = getDevice(numberOfDevices)\n    if deviceList:\n        devicePos = 0\n        for device in deviceList:\n            deviceId = device.device_id",
+        "detail": "SendData",
         "documentation": {}
     }
 ]
