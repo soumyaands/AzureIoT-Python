@@ -29,7 +29,7 @@ def sendDataToDevice(numberOfDevices,numberOfRequests):
                 messageToSend = "{'time':'"+str(dateTimeNow)+"','data':'"+str(random.randint(1,10))+"'}"
                 print(messageToSend)
                 iothubdeviceclient.send_message(messageToSend)
-                print(iothubdeviceclient.receive_message())
+                #print(iothubdeviceclient.receive_message())
                 
             #threading.Thread(target=iothubdeviceclient.send_message,args=(messageToSend))
             # ihrm.send_c2d_message(deviceId,messageToSend)
