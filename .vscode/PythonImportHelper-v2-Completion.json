@@ -214,7 +214,7 @@
         "kind": 2,
         "importPath": "AzureMain",
         "description": "AzureMain",
-        "peekOfCode": "def info(title):\n    print(title)\n    print('module name:', __name__)\n    print('parent process:', os.getppid())\n    print('process id:', os.getpid())\nif __name__ == '__main__':\n    #freeze_support()\n    info('main line')\n    p = Process(target=SD.sendDataToDevice, args=(10,10))\n    p.start()",
+        "peekOfCode": "def info(title):\n    print(title)\n    print('module name:', __name__)\n    print('parent process:', os.getppid())\n    print('process id:', os.getpid())\nif __name__ == '__main__':\n    #freeze_support()\n    info('main line')\n    proccess=[]\n    for i in range(0,300000):",
         "detail": "AzureMain",
         "documentation": {}
     },

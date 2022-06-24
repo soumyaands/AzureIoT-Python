@@ -17,8 +17,11 @@ def info(title):
 if __name__ == '__main__':
     #freeze_support()
     info('main line')
-    p = Process(target=SD.sendDataToDevice, args=(10,10))
-    p.start()
-    p.join()
+    proccess=[]
+    for i in range(0,300000):
+        proccess += [Process(target=SD.sendDataToDevice, args=(10,1))]
+    for i in range(0,300000):
+        proccess[i].start()
+        proccess[i].join()
 #SD.split_processing(10,10,1)
 #SD.sendDataToDevice(10,10);
