@@ -107,6 +107,14 @@
         "documentation": {}
     },
     {
+        "label": "BlobClient",
+        "importPath": "azure.storage.blob",
+        "description": "azure.storage.blob",
+        "isExtraImport": true,
+        "detail": "azure.storage.blob",
+        "documentation": {}
+    },
+    {
         "label": "base64",
         "kind": 6,
         "isExtraImport": true,
@@ -216,6 +224,15 @@
         "description": "AzureMain",
         "peekOfCode": "def info(title):\n    print(title)\n    print('module name:', __name__)\n    print('parent process:', os.getppid())\n    print('process id:', os.getpid())\nif __name__ == '__main__':\n    #freeze_support()\n    info('main line')\n    proccess=[]\n    for i in range(0,300000):",
         "detail": "AzureMain",
+        "documentation": {}
+    },
+    {
+        "label": "blob",
+        "kind": 5,
+        "importPath": "AzureServiceBusRead",
+        "description": "AzureServiceBusRead",
+        "peekOfCode": "blob = BlobClient(\"https://Safiya.Anjum.blob.core.windows.net\",container_name=\"safiya-blob-container\",blob_name=\"safiyaiotblob\",credential=\"ZhbjE3dkRxOlitllxw/MCYzkWe2+sVaL+lJEg/6lEz2LKMS5oVbGtrq9SFbw1iHsH+YWNvaib3JV+AStuYGHsA==\")\nwith open(\"example.csv\", \"wb\") as f:\n    data = blob.download_blob()\n    data.readinto(f)",
+        "detail": "AzureServiceBusRead",
         "documentation": {}
     },
     {
