@@ -72,40 +72,6 @@
         "documentation": {}
     },
     {
-        "label": "group",
-        "importPath": "tokenize",
-        "description": "tokenize",
-        "isExtraImport": true,
-        "detail": "tokenize",
-        "documentation": {}
-    },
-    {
-        "label": "DeviceCreation",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "DeviceCreation",
-        "description": "DeviceCreation",
-        "detail": "DeviceCreation",
-        "documentation": {}
-    },
-    {
-        "label": "getDevice",
-        "importPath": "DeviceCreation",
-        "description": "DeviceCreation",
-        "isExtraImport": true,
-        "detail": "DeviceCreation",
-        "documentation": {}
-    },
-    {
-        "label": "concurrent",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "concurrent",
-        "description": "concurrent",
-        "detail": "concurrent",
-        "documentation": {}
-    },
-    {
         "label": "SendData",
         "kind": 6,
         "isExtraImport": true,
@@ -115,12 +81,20 @@
         "documentation": {}
     },
     {
-        "label": "base64",
+        "label": "multiprocessing",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "base64",
-        "description": "base64",
-        "detail": "base64",
+        "importPath": "multiprocessing",
+        "description": "multiprocessing",
+        "detail": "multiprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "Process",
+        "importPath": "multiprocessing",
+        "description": "multiprocessing",
+        "isExtraImport": true,
+        "detail": "multiprocessing",
         "documentation": {}
     },
     {
@@ -130,6 +104,23 @@
         "importPath": "os",
         "description": "os",
         "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "BlobClient",
+        "importPath": "azure.storage.blob",
+        "description": "azure.storage.blob",
+        "isExtraImport": true,
+        "detail": "azure.storage.blob",
+        "documentation": {}
+    },
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
         "documentation": {}
     },
     {
@@ -155,6 +146,14 @@
         "description": "Utility.Utilities",
         "isExtraImport": true,
         "detail": "Utility.Utilities",
+        "documentation": {}
+    },
+    {
+        "label": "getDevice",
+        "importPath": "DeviceCreation",
+        "description": "DeviceCreation",
+        "isExtraImport": true,
+        "detail": "DeviceCreation",
         "documentation": {}
     },
     {
@@ -219,6 +218,24 @@
         "documentation": {}
     },
     {
+        "label": "info",
+        "kind": 2,
+        "importPath": "AzureMain",
+        "description": "AzureMain",
+        "peekOfCode": "def info(title):\n    print(title)\n    print('module name:', __name__)\n    print('parent process:', os.getppid())\n    print('process id:', os.getpid())\nif __name__ == '__main__':\n    #freeze_support()\n    info('main line')\n    proccess=[]\n    for i in range(0,30000):",
+        "detail": "AzureMain",
+        "documentation": {}
+    },
+    {
+        "label": "blob",
+        "kind": 5,
+        "importPath": "AzureServiceBusRead",
+        "description": "AzureServiceBusRead",
+        "peekOfCode": "blob = BlobClient(\"https://Safiya.Anjum.blob.core.windows.net\",container_name=\"safiya-blob-container\",blob_name=\"safiyaiotblob\",credential=\"ZhbjE3dkRxOlitllxw/MCYzkWe2+sVaL+lJEg/6lEz2LKMS5oVbGtrq9SFbw1iHsH+YWNvaib3JV+AStuYGHsA==\")\nwith open(\"example.csv\", \"wb\") as f:\n    data = blob.download_blob()\n    data.readinto(f)",
+        "detail": "AzureServiceBusRead",
+        "documentation": {}
+    },
+    {
         "label": "addDevice",
         "kind": 2,
         "importPath": "DeviceCreation",
@@ -232,7 +249,7 @@
         "kind": 2,
         "importPath": "DeviceCreation",
         "description": "DeviceCreation",
-        "peekOfCode": "def getDevice(numberOfDevices):\n    iothub_registry_manager = IoTHubRegistryManager.from_connection_string(iothub_connection_string)\n    try:\n        deviceList = iothub_registry_manager.get_devices(numberOfDevices)\n        if deviceList:\n            devicePos = 0\n            for device in deviceList:\n                Utilities.printDeviceInfo(\"{0}th device\".format(devicePos),device)\n                devicePos+=1\n            return deviceList;",
+        "peekOfCode": "def getDevice(numberOfDevices):\n    iothub_registry_manager = IoTHubRegistryManager.from_connection_string(iothub_connection_string)\n    try:\n        deviceList = iothub_registry_manager.get_devices(numberOfDevices)\n        if deviceList:\n            devicePos = 0\n            for device in deviceList:\n                #Utilities.printDeviceInfo(\"{0}th device\".format(devicePos),device)\n                devicePos+=1\n            return deviceList;",
         "detail": "DeviceCreation",
         "documentation": {}
     },
@@ -241,7 +258,7 @@
         "kind": 5,
         "importPath": "DeviceCreation",
         "description": "DeviceCreation",
-        "peekOfCode": "iothub_connection_string = \"HostName=Safiya-IoT-Hub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=dWEhcgJxlIQoav2EjWOKSWJNpt403bCzMfsVAfTNey0=\";\n#os.getenv(\"IOTHUB_CONNECTION_STRING\")\nglobal iothub_registry_manager #= IoTHubRegistryManager.from_connection_string(iothub_connection_string)\ndef addDevice(deviceFamily,numberOfDevices):\n    deviceList = []\n    iothub_registry_manager = IoTHubRegistryManager.from_connection_string(iothub_connection_string)\n    try:\n        for i in range(0,numberOfDevices):\n            primaryKey = base64.b64encode(str(uuid.uuid4()).encode()).decode()\n            secondaryKey = base64.b64encode(str(uuid.uuid4()).encode()).decode()",
+        "peekOfCode": "iothub_connection_string = \"HostName=Safiya-IoT-Hub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=w31yH21GCoNQz6/LBoKtS01iL3qvp0jEXUiwYcRSrHA=\";\n#os.getenv(\"IOTHUB_CONNECTION_STRING\")\nglobal iothub_registry_manager #= IoTHubRegistryManager.from_connection_string(iothub_connection_string)\ndef addDevice(deviceFamily,numberOfDevices):\n    deviceList = []\n    iothub_registry_manager = IoTHubRegistryManager.from_connection_string(iothub_connection_string)\n    try:\n        for i in range(0,numberOfDevices):\n            primaryKey = base64.b64encode(str(uuid.uuid4()).encode()).decode()\n            secondaryKey = base64.b64encode(str(uuid.uuid4()).encode()).decode()",
         "detail": "DeviceCreation",
         "documentation": {}
     },
@@ -259,7 +276,7 @@
         "kind": 2,
         "importPath": "SendData",
         "description": "SendData",
-        "peekOfCode": "def split_processing(numberOfDevices,numberOfRequests, num_splits=4):                                      \n    split_size = 2#len(items) // num_splits                                       \n    threads = []                                                                \n    for i in range(num_splits):                                                 \n        # determine the indices of the list this thread will handle             \n        start = i * split_size                                                  \n        # special case on the last chunk to account for uneven splits           \n        end = None if i+1 == num_splits else (i+1) * split_size                 \n        # create the thread                                                     \n        threads.append(                                                         ",
+        "peekOfCode": "def split_processing(numberOfDevices,numberOfRequests, num_splits=4):                                      \n    split_size = 2#len(items) // num_splits                                       \n    threads = []                                                                \n    for i in range(num_splits):                                                 \n        # determine the indices of the list this thread will handle             \n        start = i * split_size                                                  \n        # special case on the last chunk to account for uneven splits           \n        end = None if i+1 == num_splits else (i+1) * split_size                 \n        # create the thread \n        #mutex.acquire()",
         "detail": "SendData",
         "documentation": {}
     },
@@ -268,7 +285,16 @@
         "kind": 5,
         "importPath": "SendData",
         "description": "SendData",
-        "peekOfCode": "iothub_connection_string = \"HostName=Safiya-IoT-Hub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=dWEhcgJxlIQoav2EjWOKSWJNpt403bCzMfsVAfTNey0=\";\ndef sendDataToDevice(numberOfDevices,numberOfRequests):\n    HostName = \"Safiya-IoT-Hub.azure-devices.net\"\n    ihrm = IHRM.from_connection_string(iothub_connection_string)\n    #try:\n    deviceList = getDevice(numberOfDevices)\n    if deviceList:\n        devicePos = 0\n        for device in deviceList:\n            deviceId = device.device_id",
+        "peekOfCode": "iothub_connection_string = \"HostName=Safiya-IoT-Hub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=w31yH21GCoNQz6/LBoKtS01iL3qvp0jEXUiwYcRSrHA=\";\ndef sendDataToDevice(numberOfDevices,numberOfRequests):\n    HostName = \"Safiya-IoT-Hub.azure-devices.net\"\n    ihrm = IHRM.from_connection_string(iothub_connection_string)\n    #try:\n    deviceList = getDevice(numberOfDevices)\n    if deviceList:\n        devicePos = 0\n        for device in deviceList:\n            deviceId = device.device_id",
+        "detail": "SendData",
+        "documentation": {}
+    },
+    {
+        "label": "mutex",
+        "kind": 5,
+        "importPath": "SendData",
+        "description": "SendData",
+        "peekOfCode": "mutex = threading.Lock()                                                   \ndef split_processing(numberOfDevices,numberOfRequests, num_splits=4):                                      \n    split_size = 2#len(items) // num_splits                                       \n    threads = []                                                                \n    for i in range(num_splits):                                                 \n        # determine the indices of the list this thread will handle             \n        start = i * split_size                                                  \n        # special case on the last chunk to account for uneven splits           \n        end = None if i+1 == num_splits else (i+1) * split_size                 \n        # create the thread ",
         "detail": "SendData",
         "documentation": {}
     }
