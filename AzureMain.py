@@ -1,3 +1,7 @@
+'''
+    Device Creation
+    @Author Soumya Mitra
+'''
 # from tokenize import group
 # import DeviceCreation as DC
 # import concurrent
@@ -5,7 +9,10 @@
 # DC.getDevice(10)
 # for i in range(0, 10):
 #     DC.deleteDevice("device_Test_"+str(i))
-
+'''
+    Device to Cloud Data Transmission
+    @Author Soumya Mitra
+'''
 import SendData as SD
 from multiprocessing import Process
 import os
@@ -18,10 +25,10 @@ if __name__ == '__main__':
     #freeze_support()
     info('main line')
     proccess=[]
-    for i in range(0,30000):
+    for i in range(0,100):
         proccess += [Process(target=SD.sendDataToDevice, args=(10,1))]
-    for i in range(0,30000):
+    for i in range(0,100):
         proccess[i].start()
         proccess[i].join()
-#SD.split_processing(10,10,1)
-#SD.sendDataToDevice(10,10);
+# SD.split_processing(10,10,1)
+# SD.sendDataToDevice(10,10);

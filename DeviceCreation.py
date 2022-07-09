@@ -4,7 +4,7 @@ import uuid
 from azure.iot.hub import IoTHubRegistryManager
 from azure.iot.hub.models import SymmetricKey, AuthenticationMechanism, ExportImportDevice
 from Utility import Utilities
-iothub_connection_string = "HostName=Safiya-IoT-Hub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=w31yH21GCoNQz6/LBoKtS01iL3qvp0jEXUiwYcRSrHA=";
+iothub_connection_string = "HostName=SoumyasHub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=s21HMIgS8616PdgkDRm8GeplN1Hp7nKgBBSPwCpke/A=";
 #os.getenv("IOTHUB_CONNECTION_STRING")
 global iothub_registry_manager #= IoTHubRegistryManager.from_connection_string(iothub_connection_string)
 def addDevice(deviceFamily,numberOfDevices):

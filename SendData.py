@@ -7,9 +7,10 @@ import random
 import multiprocessing
 from azure.iot.device import IoTHubDeviceClient
 from datetime import datetime
-iothub_connection_string = "HostName=Safiya-IoT-Hub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=w31yH21GCoNQz6/LBoKtS01iL3qvp0jEXUiwYcRSrHA=";
+import json
+iothub_connection_string = "HostName=SoumyasHub.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=s21HMIgS8616PdgkDRm8GeplN1Hp7nKgBBSPwCpke/A=";
 def sendDataToDevice(numberOfDevices,numberOfRequests):
-    HostName = "Safiya-IoT-Hub.azure-devices.net"
+    HostName = "SoumyasHub.azure-devices.net"
     ihrm = IHRM.from_connection_string(iothub_connection_string)
     #try:
     deviceList = getDevice(numberOfDevices)
@@ -17,6 +18,7 @@ def sendDataToDevice(numberOfDevices,numberOfRequests):
         devicePos = 0
         for device in deviceList:
             deviceId = device.device_id
+            print(deviceId)
             devicePrimaryKey = device.authentication.symmetric_key.primary_key
             deviceConnectionString = DCS.format(HostName,deviceId,devicePrimaryKey)
             print(deviceConnectionString)
@@ -26,7 +28,13 @@ def sendDataToDevice(numberOfDevices,numberOfRequests):
             iothubdeviceclient.connect()
             dateTimeNow = datetime.now().strftime(date_format)
             for i in range(0,numberOfRequests):
-                messageToSend = "{'time':'"+str(dateTimeNow)+"','data':'"+str(random.randint(1,10))+"'}"
+                dictMessageToSend = {
+                    "time": dateTimeNow,
+                    "data": random.randint(1,10),
+                    "deviceId": deviceId
+                }
+                
+                messageToSend = '{\"time\":\"'+str(dateTimeNow)+'\",\"data\":\"'+str(random.randint(1,10))+'\",\"device\":\"'+deviceId+'\"}'
                 print(messageToSend)
                 iothubdeviceclient.send_message(messageToSend)
                 #print(iothubdeviceclient.receive_message())
