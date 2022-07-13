@@ -1,0 +1,21 @@
+{
+    "@context": "dtmi:dtdl:context;2",
+    "@id": "dtmi:com:home:digital:living:building:house:room:appliance;1",
+    "@type": "Interface",
+    "displayName": "Appliance - Interface Model",
+    "contents": [
+        {
+            "@type":"Property",
+            "name": "current",
+            "schema": "string",
+            "description": "Current Flowing Through Appliance",
+            "writable": true
+        },{
+            "@type":"Property",
+            "name": "voltage",
+            "schema": "string",
+            "description": "Voltage Across Appliance",
+            "writable": true
+        }
+    ]
+}

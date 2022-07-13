@@ -1,0 +1,22 @@
+{
+    "@context": "dtmi:dtdl:context;2",
+    "@id": "dtmi:com:home:digital:living:building:house:room:appliance:fan;1",
+    "@type": "Interface",
+    "displayName": "Fan - Interface Model",
+    "contents": [
+        {
+            "@type":"Relationship",
+            "@id": "dtmi:com:home:digital:living:building:house:room:appliance:fan_appliance_relation;1",
+            "target": "dtmi:com:home:digital:living:building:house:room:appliance;1",
+            "name": "appliance",
+            "description": "Appliance Property",
+            "writable": true
+        },{
+            "@type":"Property",
+            "name": "rpm",
+            "schema": "string",
+            "description": "Roatation Speed",
+            "writable": true
+        }
+    ]
+}

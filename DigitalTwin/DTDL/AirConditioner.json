@@ -1,0 +1,22 @@
+{
+    "@context": "dtmi:dtdl:context;2",
+    "@id": "dtmi:com:home:digital:living:building:house:room:appliance:ac;1",
+    "@type": "Interface",
+    "displayName": "Air Conditioner - Interface Model",
+    "contents": [
+        {
+            "@type":"Relationship",
+            "@id": "dtmi:com:home:digital:living:building:house:room:appliance:ac_appliance_relation;1",
+            "target": "dtmi:com:home:digital:living:building:house:room:appliance;1",
+            "name": "appliance",
+            "description": "Appliance Property",
+            "writable": true
+        },{
+            "@type":"Property",
+            "name": "temperature",
+            "schema": "string",
+            "description": "Temperature Level",
+            "writable": true
+        }
+    ]
+}

@@ -1,0 +1,36 @@
+{
+    "@context": "dtmi:dtdl:context;2",
+    "@id": "dtmi:com:home:digital:living:building:house:room;1",
+    "@type": "Interface",
+    "displayName": "Bulb - Interface Model",
+    "contents": [
+        {
+            "@type":"Relationship",
+            "@id": "dtmi:com:home:digital:living:building:house:room:appliance:room_bulb_relation;1",
+            "target": "dtmi:com:home:digital:living:building:house:room:appliance:bulb;1",
+            "name": "bulb",
+            "description": "Appliance Property",
+            "writable": true
+        },{
+            "@type":"Relationship",
+            "@id": "dtmi:com:home:digital:living:building:house:room:appliance:room_fan_relation;1",
+            "target": "dtmi:com:home:digital:living:building:house:room:appliance:fan;1",
+            "name": "fan",
+            "description": "Appliance Property",
+            "writable": true
+        },{
+            "@type":"Relationship",
+            "@id": "dtmi:com:home:digital:living:building:house:room:appliance:room_ac_relation;1",
+            "target": "dtmi:com:home:digital:living:building:house:room:appliance:ac;1",
+            "name": "ac",
+            "description": "Appliance Property",
+            "writable": true
+        },{
+            "@type":"Property",
+            "name": "door",
+            "schema": "boolean",
+            "description": "Door Locked Status",
+            "writable": true
+        }
+    ]
+}
