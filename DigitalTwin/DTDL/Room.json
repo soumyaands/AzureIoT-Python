@@ -2,7 +2,7 @@
     "@context": "dtmi:dtdl:context;2",
     "@id": "dtmi:com:home:digital:living:building:house:room;1",
     "@type": "Interface",
-    "displayName": "Bulb - Interface Model",
+    "displayName": "Room - Interface Model",
     "contents": [
         {
             "@type":"Relationship",
@@ -26,11 +26,10 @@
             "description": "Appliance Property",
             "writable": true
         },{
-            "@type":"Property",
+            "@type":"Component",
             "name": "door",
-            "schema": "boolean",
-            "description": "Door Locked Status",
-            "writable": true
+            "schema": "dtmi:com:home:digital:living:building:house:room:door;1",
+            "description": "Door Locked Status"
         }
     ]
 }

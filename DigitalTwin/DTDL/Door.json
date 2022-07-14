@@ -1,0 +1,21 @@
+{
+    "@context": "dtmi:dtdl:context;2",
+    "@id": "dtmi:com:home:digital:living:building:house:room:door;1",
+    "@type": "Interface",
+    "displayName": "Door - Interface Model",
+    "contents": [
+        {
+            "@type":"Property",
+            "name": "door_state",
+            "schema": "boolean",
+            "description": "Open/Close Door State",
+            "writable": true
+        },{
+            "@type":"Property",
+            "name": "door_lock_state",
+            "schema": "boolean",
+            "description": "Open/Close Door Lock State",
+            "writable": true
+        }
+    ]
+}
